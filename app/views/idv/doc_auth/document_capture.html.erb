@@ -1,21 +1,5 @@
 <% if Figaro.env.acuant_sdk_document_capture_enabled == 'true' %>
-  <% title t('doc_auth.titles.doc_auth') %>
-  <% content_for :meta_tags do %>
-    <meta
-      name="acuant-sdk-initialization-endpoint"
-      content="<%= Figaro.env.acuant_sdk_initialization_endpoint %>"
-    >
-    <meta
-      name="acuant-sdk-initialization-creds"
-      content="<%= Figaro.env.acuant_sdk_initialization_creds %>"
-    >
-  <% end %>
-  <%= tag.div id: 'document-capture-form', data: {
-    liveness: liveness_checking_enabled?.presence,
-    document_capture_session_uuid: flow_session[:document_capture_session_uuid],
-    endpoint: api_verify_images_url
-  } %>
-  <div class="js-fallback">
+  <div>
     <%= render 'idv/doc_auth/error_messages', flow_session: flow_session %>
 
     <h1 class="h3 my0">

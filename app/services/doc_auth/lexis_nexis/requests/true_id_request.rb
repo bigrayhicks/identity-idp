@@ -2,12 +2,18 @@ module DocAuth
   module LexisNexis
     module Requests
       class TrueIdRequest < DocAuth::LexisNexis::Request
-        attr_reader :front_image, :back_image,  :selfie_image
+        attr_reader :front_image, :back_image, :selfie_image, :liveness_checking_enabled
 
-        def initialize(front_image:, back_image:, selfie_image: nil)
+        def initialize(
+          front_image:,
+          back_image:,
+          selfie_image: nil,
+          liveness_checking_enabled: nil
+        )
           @front_image = front_image
           @back_image = back_image
           @selfie_image = selfie_image
+          @liveness_checking_enabled = liveness_checking_enabled
         end
 
         def headers
@@ -26,11 +32,12 @@ module DocAuth
               DocumentType: 'DriversLicense',
             },
           }
-          document[:Document][:Selfie] = encode(selfie_image) if selfie_image
+          document[:Document][:Selfie] = encode(selfie_image) if liveness_checking_enabled
           settings.merge(document).to_json
         end
 
         def handle_http_response(http_response)
+          # DP: need to capture the info returned and include it in the response
           DocAuth::Response.new(success: http_response.status == 200)
         end
 

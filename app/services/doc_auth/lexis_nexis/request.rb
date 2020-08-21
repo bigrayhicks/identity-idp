@@ -46,7 +46,7 @@ module DocAuth
             Workflow: workflow,
             Mode: request_mode,
             Locale: I18n.locale,
-            Venue: "online",
+            Venue: 'online',
           },
         }
       end
@@ -132,7 +132,7 @@ module DocAuth
 
       def encoded_credentials
         Base64.strict_encode64(
-          "#{Figaro.env.lexisnexis_username}:#{Figaro.env.lexisnexis_password}"
+          "#{Figaro.env.lexisnexis_username}:#{Figaro.env.lexisnexis_password}",
         )
       end
     end
