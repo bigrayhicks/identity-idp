@@ -57,12 +57,18 @@ describe('document-capture/components/document-capture', () => {
     );
 
     initialize();
-    window.AcuantCameraUI.start.callsArgWithAsync(0, {
-      glare: 70,
-      sharpness: 70,
-      image: {
-        data: 'data:image/png;base64,',
-      },
+    window.AcuantCameraUI.start.callsFake((callbacks) => {
+      const response = {
+        glare: 70,
+        sharpness: 70,
+        image: {
+          data: 'data:image/png;base64,',
+        },
+      };
+
+      Promise.resolve()
+        .then(() => Promise.resolve(callbacks.onCaptured(response.image)))
+        .then(() => Promise.resolve(callbacks.onCropped(response)));
     });
 
     let continueButton = getByText('forms.buttons.continue');

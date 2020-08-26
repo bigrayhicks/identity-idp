@@ -134,7 +134,7 @@ describe('document-capture/components/acuant-capture', () => {
       );
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 70,
           sharpness: 70,
@@ -142,7 +142,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const button = getByText('doc_auth.buttons.take_picture');
@@ -224,7 +225,7 @@ describe('document-capture/components/acuant-capture', () => {
       );
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 38,
           sharpness: 70,
@@ -232,7 +233,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const button = getByText('doc_auth.buttons.take_picture');
@@ -253,7 +255,7 @@ describe('document-capture/components/acuant-capture', () => {
       );
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 70,
           sharpness: 20,
@@ -261,7 +263,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const button = getByText('doc_auth.buttons.take_picture');
@@ -282,7 +285,7 @@ describe('document-capture/components/acuant-capture', () => {
       );
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 70,
           sharpness: 20,
@@ -290,7 +293,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const file = new window.File([''], 'upload.txt', { type: 'text/plain' });
@@ -319,7 +323,7 @@ describe('document-capture/components/acuant-capture', () => {
       let isBlurry = true;
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 70,
           sharpness: isBlurry ? 20 : 70,
@@ -327,7 +331,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const button = getByText('doc_auth.buttons.take_picture');
@@ -350,7 +355,7 @@ describe('document-capture/components/acuant-capture', () => {
       );
 
       initialize();
-      window.AcuantCameraUI.start.callsFake((onImageCaptureSuccess) => {
+      window.AcuantCameraUI.start.callsFake((callbacks) => {
         const capture = {
           glare: 70,
           sharpness: 38,
@@ -358,7 +363,8 @@ describe('document-capture/components/acuant-capture', () => {
             data: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E',
           },
         };
-        onImageCaptureSuccess(capture);
+        callbacks.onCaptured(capture.image);
+        callbacks.onCropped(capture);
       });
 
       const button = getByText('doc_auth.buttons.take_picture');
